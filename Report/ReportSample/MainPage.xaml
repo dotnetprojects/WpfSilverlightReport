@@ -1,0 +1,32 @@
+﻿<UserControl xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"      
+    x:Class="ReportSample.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Background="#EEEEEE" Padding="10" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" FontSize="20" FontWeight="Bold">SilverlightReport Sample</TextBlock>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center">Select report sample:</TextBlock>
+                <ComboBox x:Name="cmbSample" Width="200" Margin="20">
+                    <sys:String>ReportSample1.xaml</sys:String>
+                    <sys:String>ReportSample2.xaml</sys:String>
+                </ComboBox>
+                <Button Content="Print" Click="Print1" Width="60" Margin="20"></Button>
+                <Button Content="Preview" Click="Preview1" Width="60" Margin="20"></Button>
+            </StackPanel>
+
+            <sdk:TabControl Grid.Row="2">
+                <sdk:TabItem x:Name="tabXaml" Header="ReportSample.xaml">
+                    <TextBox x:Name="txtXaml" TextWrapping="Wrap" AcceptsReturn="True"
+                             HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" ></TextBox>
+                </sdk:TabItem>
+            </sdk:TabControl>
+        </Grid>
+    </Border>
+</UserControl>

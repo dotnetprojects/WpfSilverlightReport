@@ -1,0 +1,23 @@
+﻿<sr:Report
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:sr="clr-namespace:Report;assembly=Report">    
+    <sr:Report.DataGrid>
+        <sr:CDataGrid HeaderHorizontalAlignment="Center">
+            <sr:CDataGridColumn Header="CustomerId" Binding="{Binding CustomerId}" Width="1.2"></sr:CDataGridColumn>
+            <sr:CDataGridColumn Header="CompanyName" Binding="{Binding CompanyName}" Width="3"></sr:CDataGridColumn>
+            <sr:CDataGridColumn Header="ContactName" Binding="{Binding ContactName}" Width="2"></sr:CDataGridColumn>
+            <sr:CDataGridColumn Header="ContactTitle" Binding="{Binding ContactTitle}" Width="2"></sr:CDataGridColumn>
+            <sr:CDataGridColumn Header="Address" Binding="{Binding Address}" Width="2"></sr:CDataGridColumn>
+        </sr:CDataGrid>
+    </sr:Report.DataGrid>
+
+    <sr:ReportBand Kind="ReportHeader">
+            <TextBlock FontSize="20" FontWeight="Bold" Margin="10" HorizontalAlignment="Center">
+                Silverlight Report Sample</TextBlock>
+    </sr:ReportBand>
+
+    <sr:ReportBand Kind="BottomMargin">
+        <TextBlock HorizontalAlignment="Right">SilverlightReport v0.1 alpha</TextBlock>
+    </sr:ReportBand>
+</sr:Report>
