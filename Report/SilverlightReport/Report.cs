@@ -28,7 +28,7 @@ namespace Report
     /// Silverlight Report.
     /// </summary>
     [ContentProperty("Bands")]
-    public class Report
+    public class Report : Control
     {
         public Report()
         {
