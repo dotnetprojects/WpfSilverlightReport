@@ -13,6 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -79,7 +80,7 @@ namespace Report
         /// <summary>
         /// Gets or sets the ItemsSource of the report.
         /// </summary>
-        public IList ItemsSource { get; set; }
+        public IEnumerable ItemsSource { get; set; }
         
         /// <summary>
         /// Gets the ReportBand collection of the report.
@@ -194,7 +195,7 @@ namespace Report
             if (this.currentPage != null) this.currentPage.ReleaseVisual();
 
             this.currentPage = this.pages[pageNo - 1];
-            e.PageVisual = this.currentPage.GenerateVisual(this.PageSize.Width, this.PageSize.Height, this.PageMargin);
+            e.PageVisual = this.currentPage.GenerateVisual(this.PageSize.Width, this.PageSize.Height, this.PageMargin, new ReportInformation() { CurrentPage = pageNo, PageCount = this.pages.Count, DataContext = this.DataContext });
         }
         #endregion
 
@@ -383,12 +384,10 @@ namespace Report
         }
         #endregion
 
-        #region LoadFromXaml
-        public static Report LoadFromXaml(string file)
+        #region LoadFrom...
+        
+        public static Report LoadFromString(string xaml)
         {
-            string xaml = ReadXaml(file);
-            if (string.IsNullOrEmpty(xaml)) throw new Exception("Read Xaml faild.");
-
 #if SILVERLIGHT
             Report report = XamlReader.Load(xaml) as Report;
 #else
@@ -440,24 +439,7 @@ namespace Report
             }
 
             return report;
-        }
-
-        public static string ReadXaml(string file)
-        {
-            Uri fileUri = new Uri(file, UriKind.Relative);
-            StreamResourceInfo streamInfo = Application.GetResourceStream(fileUri);
-
-            string xaml = null;
-            if ((streamInfo != null) && (streamInfo.Stream != null))
-            {
-                using (StreamReader reader = new StreamReader(streamInfo.Stream))
-                {
-                    xaml = reader.ReadToEnd();
-                }
-            }
-
-            return xaml;
-        }
+        }      
 
         #endregion
     }

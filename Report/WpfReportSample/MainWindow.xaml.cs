@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,12 +35,19 @@ namespace WpfReportSample
         void cmbSample_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string name = this.cmbSample.SelectedItem as string;
-            string fullName = string.Format("/WpfReportSample;component/{0}", name);
+
+            string result;
+            var assembly = Assembly.GetExecutingAssembly();
+            using (Stream stream = assembly.GetManifestResourceStream("WpfReportSample."+name))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                result = reader.ReadToEnd();
+            }
 
             this.tabXaml.Header = name;
-            this.txtXaml.Text = Report.Report.ReadXaml(fullName);
+            this.txtXaml.Text = result;
 
-            this.report = Report.Report.LoadFromXaml(fullName);
+            this.report = Report.Report.LoadFromString(result);
             this.report.ItemsSource = new CustomerCollection();
         }
 

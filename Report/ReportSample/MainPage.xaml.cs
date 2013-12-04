@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.IO;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Resources;
 
 namespace ReportSample
 {
@@ -20,10 +23,23 @@ namespace ReportSample
             string name =  this.cmbSample.SelectedItem as string;
             string fullName = string.Format("/ReportSample;component/{0}", name);
 
-            this.tabXaml.Header = name;
-            this.txtXaml.Text = Report.Report.ReadXaml(fullName);
+            Uri fileUri = new Uri(fullName, UriKind.Relative);
 
-            this.report = Report.Report.LoadFromXaml(fullName);
+            StreamResourceInfo streamInfo = Application.GetResourceStream(fileUri);
+
+            string xaml = null;
+            if ((streamInfo != null) && (streamInfo.Stream != null))
+            {
+                using (StreamReader reader = new StreamReader(streamInfo.Stream))
+                {
+                    xaml = reader.ReadToEnd();
+                }
+            }
+
+            this.tabXaml.Header = name;
+            this.txtXaml.Text = xaml;
+
+            this.report = Report.Report.LoadFromString(xaml);
             this.report.ItemsSource = new CustomerCollection();
         }
 

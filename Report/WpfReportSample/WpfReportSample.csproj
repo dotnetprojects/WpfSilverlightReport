@@ -58,11 +58,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <Content Include="..\ReportSample\ReportSample2.xaml">
+    <EmbeddedResource Include="..\ReportSample\ReportSample2.xaml">
       <Link>ReportSample2.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Content>
+    </EmbeddedResource>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -78,6 +78,7 @@
     <Compile Include="CDataGrid.cs" />
     <Compile Include="CDataGridColumn.cs" />
     <Compile Include="ReportBand.cs" />
+    <Compile Include="ReportInformation.cs" />
     <Compile Include="ReportPage.cs" />
     <Compile Include="Summary.cs" />
   </ItemGroup>

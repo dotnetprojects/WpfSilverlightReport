@@ -64,6 +64,9 @@
     <Compile Include="..\SilverlightReport\ReportBand.cs">
       <Link>ReportBand.cs</Link>
     </Compile>
+    <Compile Include="..\SilverlightReport\ReportInformation.cs">
+      <Link>ReportInformation.cs</Link>
+    </Compile>
     <Compile Include="..\SilverlightReport\ReportPage.cs">
       <Link>ReportPage.cs</Link>
     </Compile>

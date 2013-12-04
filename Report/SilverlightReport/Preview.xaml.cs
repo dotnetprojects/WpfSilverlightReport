@@ -37,6 +37,7 @@ namespace Report
             wnd.Show();
 #else
             var wnd = new Window();
+            wnd.SizeToContent = SizeToContent.WidthAndHeight;
             wnd.Content = this;
             wnd.ShowDialog();
 #endif

@@ -141,7 +141,7 @@ namespace Report
             else this.bands.Add(bandItem);
         }
 
-        public UIElement GenerateVisual(double pageWidth, double pageHeight, Thickness margin)
+        public UIElement GenerateVisual(double pageWidth, double pageHeight, Thickness margin, ReportInformation info)
         {
             this.rootVisual.Width = pageWidth;
             this.rootVisual.Height = pageHeight;
@@ -149,20 +149,37 @@ namespace Report
 
             if (this.TopMarginBand != null)
             {
+                this.TopMarginBand.Band.DataContext = info;
                 this.AddChildren(this.grid, this.TopMarginBand);
                 this.TopMarginBand.Band.SetValue(Grid.RowProperty, 0);
             }
 
             if (this.bands != null && this.bands.Count > 0)
             {
-                if (this.ReportHeaderBand != null) this.AddChildren(this.panel, this.ReportHeaderBand);
-                if (this.PageHeaderBand != null) this.AddChildren(this.panel, this.PageHeaderBand);
-                foreach (var band in this.bands) this.AddChildren(this.panel, band);
-                if (this.PageFooterBand != null) this.AddChildren(this.panel, this.PageFooterBand);
+                if (this.ReportHeaderBand != null)
+                {
+                    this.ReportHeaderBand.Band.DataContext = info;
+                    this.AddChildren(this.panel, this.ReportHeaderBand);
+                }
+                if (this.PageHeaderBand != null)
+                {
+                    this.PageHeaderBand.Band.DataContext = info;
+                    this.AddChildren(this.panel, this.PageHeaderBand);
+                }
+                foreach (var band in this.bands)
+                {
+                    this.AddChildren(this.panel, band);
+                }
+                if (this.PageFooterBand != null)
+                {
+                    this.PageFooterBand.Band.DataContext = info;
+                    this.AddChildren(this.panel, this.PageFooterBand);
+                }
             }
 
             if (this.BottomMarginBand != null)
             {
+                this.BottomMarginBand.Band.DataContext = info;
                 this.AddChildren(this.grid, this.BottomMarginBand);
                 this.BottomMarginBand.Band.SetValue(Grid.RowProperty, 2);
             }
