@@ -20,11 +20,6 @@ namespace Report
         {
             InitializeComponent();
 
-#if SILVERLIGHT
-            this.Height = Application.Current.Host.Content.ActualHeight;
-            this.Width = Application.Current.Host.Content.ActualWidth;
-#endif
-
             this.Loaded += Preview_Loaded;
             //this.Closing += Preview_Closing;
         }
@@ -34,6 +29,8 @@ namespace Report
 #if SILVERLIGHT
             var wnd = new ChildWindow();
             wnd.Content = this;
+            wnd.Height = Application.Current.Host.Content.ActualHeight * 0.8;
+            wnd.Width = Application.Current.Host.Content.ActualWidth * 0.8;
             wnd.Show();
 #else
             var wnd = new Window();

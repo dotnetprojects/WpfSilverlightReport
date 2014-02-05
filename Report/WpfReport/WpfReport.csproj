@@ -84,12 +84,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\SilverlightReport\Images\blueDown.png">
+    <Resource Include="..\SilverlightReport\Images\blueDown.png">
       <Link>Images\blueDown.png</Link>
-    </Content>
-    <Content Include="..\SilverlightReport\Images\blueUp.png">
+    </Resource>
+    <Resource Include="..\SilverlightReport\Images\blueUp.png">
       <Link>Images\blueUp.png</Link>
-    </Content>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
