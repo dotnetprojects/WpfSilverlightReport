@@ -16,8 +16,12 @@ namespace Report
 {
     public partial class Preview : IPrinter
     {
-        public Preview()
+        private Report report;
+
+        public Preview(Report report)
         {
+            this.report = report;
+
             InitializeComponent();
 
             this.Loaded += Preview_Loaded;
@@ -90,6 +94,20 @@ namespace Report
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
             if (this.pageNo < this.pageCount) this.PrintPageNo(this.pageNo + 1);
+        }
+
+        private void optPortrait_Checked(object sender, RoutedEventArgs e)
+        {
+            this.report.PageSize = new Size(827, 1169);
+            if (this.pageNo > 0)
+                this.PrintPageNo(this.pageNo);
+        }
+
+        private void optLandscape_Checked(object sender, RoutedEventArgs e)
+        {
+            this.report.PageSize = new Size(1169, 827);
+            if (this.pageNo > 0)
+                this.PrintPageNo(this.pageNo);
         }
     }
 }

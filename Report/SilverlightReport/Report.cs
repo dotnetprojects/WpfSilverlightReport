@@ -137,7 +137,7 @@ namespace Report
         {
             if (this.preview == null)
             {
-                this.preview = new Preview();
+                this.preview = new Preview(this);
                 this.preview.BeginPrint += Printer_BeginPrint;
                 this.preview.EndPrint += Printer_EndPrint;
                 this.preview.PrintPage += Printer_PrintPage;

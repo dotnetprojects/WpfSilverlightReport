@@ -31,6 +31,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" ><Run Text="Page"/></TextBlock>
@@ -47,6 +48,11 @@
 					Margin="8,0" Padding="0" Height="21" Width="26" Click="btnNext_Click">
                     <Image Source="Images/blueDown.png" Width="16" Height="16"/>
                 </Button>
+
+                <StackPanel VerticalAlignment="Center" Grid.Column="7" Orientation="Horizontal" >
+                    <RadioButton x:Name="optPortrait" Margin="10,0,0,0" Content="Portrait" IsChecked="True" Checked="optPortrait_Checked" />
+                    <RadioButton x:Name="optLandscape" Margin="10,0,0,0" Content="Landscape" Checked="optLandscape_Checked" />
+                </StackPanel>
             </Grid>
         </Border>
     </Grid>
