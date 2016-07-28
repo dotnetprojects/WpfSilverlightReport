@@ -28,6 +28,9 @@ namespace Report
             //this.Closing += Preview_Closing;
         }
 
+        public void Print()
+        { }
+
         public void Show()
         {
 #if SILVERLIGHT

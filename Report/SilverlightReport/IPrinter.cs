@@ -39,5 +39,7 @@ namespace Report
         event EventHandler<XBeginPrintEventArgs> BeginPrint;
 
         event EventHandler<EventArgs> EndPrint;
+
+        void Print();
     }
 }

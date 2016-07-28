@@ -146,26 +146,22 @@ namespace Report
             this.preview.Show();
         }
 
-#if SILVERLIGHT
-        private Printer printer;
-#endif
+        private IPrinter printer;
 
         /// <summary>
         /// Print whole report.
         /// </summary>
         public void Print()
         {
-#if SILVERLIGHT
             if (this.printer == null)
             {
                 this.printer = new Printer();
-                this.printer.BeginPrint += new EventHandler<XBeginPrintEventArgs>(Printer_BeginPrint);
-                this.printer.EndPrint += new EventHandler<EventArgs>(Printer_EndPrint);
-                this.printer.PrintPage += new EventHandler<XPrintPageEventArgs>(Printer_PrintPage);
+                this.printer.BeginPrint += Printer_BeginPrint;
+                this.printer.EndPrint += Printer_EndPrint;
+                this.printer.PrintPage += Printer_PrintPage;
             }
 
             this.printer.Print();
-#endif
         }
 
         void Printer_BeginPrint(object sender, XBeginPrintEventArgs e)
